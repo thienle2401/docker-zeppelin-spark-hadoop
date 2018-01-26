@@ -1,4 +1,4 @@
-FROM gettyimages/spark:2.0.1-hadoop-2.7
+FROM gettyimages/spark:2.2.1-hadoop-2.7
 
 # SciPy
 RUN set -ex \
@@ -25,6 +25,28 @@ RUN set -ex \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
+ ## Now install R and littler, and create a link for littler in /usr/local/bin
+ ## Also set a default CRAN repo, and make sure littler knows about it too
+ ENV R_BASE_VERSION 3.4.3
+ 
+ RUN apt-get update \
+ 	&& apt-get install -t unstable -y --no-install-recommends \
+ 		littler \
+                 r-cran-littler \
+ 		r-base=${R_BASE_VERSION}* \
+ 		r-base-dev=${R_BASE_VERSION}* \
+ 		r-recommended=${R_BASE_VERSION}* \
+         && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
+         && echo 'source("/etc/R/Rprofile.site")' >> /etc/littler.r \
+ 	&& ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
+ 	&& ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
+ 	&& ln -s /usr/share/doc/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
+ 	&& ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \
+ 	&& install.r docopt \
+ 	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
+ 	&& rm -rf /var/lib/apt/lists/*
+
+
 # Zeppelin
 ENV ZEPPELIN_PORT 8080
 ENV ZEPPELIN_HOME /usr/zeppelin
@@ -47,7 +69,7 @@ RUN set -ex \
  && git checkout -q $ZEPPELIN_COMMIT \
  && dev/change_scala_version.sh "2.11" \
  && MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=1024m" /tmp/apache-maven-3.5.0/bin/mvn --batch-mode package -DskipTests -Pscala-2.11 -Pbuild-distr \
-  -pl 'zeppelin-interpreter,zeppelin-zengine,zeppelin-display,spark-dependencies,spark,markdown,angular,shell,hbase,postgresql,jdbc,python,elasticsearch,zeppelin-web,zeppelin-server,zeppelin-distribution' \
+  -pl 'zeppelin-interpreter,zeppelin-zengine,zeppelin-display,spark-dependencies,spark,sparkr,r,markdown,angular,shell,hbase,postgresql,jdbc,python,elasticsearch,zeppelin-web,zeppelin-server,zeppelin-distribution' \
  && tar xvf /usr/src/zeppelin/zeppelin-distribution/target/zeppelin*.tar.gz -C /usr/ \
  && mv /usr/zeppelin* $ZEPPELIN_HOME \
  && mkdir -p $ZEPPELIN_HOME/logs \

@@ -28,11 +28,7 @@ RUN set -ex \
 
 # install R ##########################
 ######################################
-<<<<<<< HEAD
 RUN apt-get update && apt-get install -y r-base r-base-dev
-=======
-RUN apt-get install -y r-base r-base-dev
->>>>>>> e62d8518549c9b9858e9cfc8473fc3a86da57bd9
 
 # Zeppelin
 ENV ZEPPELIN_PORT 8080

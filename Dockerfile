@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y r-base r-base-dev \
  && R -e "install.packages('ggplot2', repos = 'http://cran.us.r-project.org')" \
  && R -e "install.packages('dplyr', repos = 'http://cran.us.r-project.org')"
  && R -e "install.packages(c('devtools','mplot', 'googleVis'), repos = 'http://cran.us.r-project.org'); require(devtools); install_github('ramnathv/rCharts')"
+ 
 
 # Zeppelin
 ENV ZEPPELIN_PORT 8080

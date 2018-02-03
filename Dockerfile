@@ -1,4 +1,4 @@
-FROM gettyimages/spark:2.2.1-hadoop-2.7
+FROM gettyimages/spark:2.1.1-hadoop-2.7
 
 # SciPy
 RUN set -ex \

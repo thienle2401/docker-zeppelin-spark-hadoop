@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y r-base r-base-dev libssl-dev libcurl4-o
  && R -e "install.packages('knitr', repos = 'http://cran.us.r-project.org')" \
  && R -e "install.packages('ggplot2', repos = 'http://cran.us.r-project.org')" \
  && R -e "install.packages('dplyr', repos = 'http://cran.us.r-project.org')" \
+ && R -e "install.packages('corrgram', repos = 'http://cran.us.r-project.org')" \
+ && R -e "install.packages('reshape', repos = 'http://cran.us.r-project.org')" \
  && R -e "install.packages(c('devtools','mplot', 'googleVis'), repos = 'http://cran.us.r-project.org'); require(devtools); install_github('ramnathv/rCharts')"
 
 

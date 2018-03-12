@@ -29,14 +29,14 @@ RUN set -ex \
 # install R ##########################
 ######################################
 RUN apt-get update && apt-get install -y r-base r-base-dev libssl-dev libcurl4-openssl-dev \
- && R -e "install.packages('devtools', repos = 'http://cran.us.r-project.org')" \
- && R -e "install.packages('knitr', repos = 'http://cran.us.r-project.org')" \
- && R -e "install.packages('ggplot2', repos = 'http://cran.us.r-project.org')" \
- && R -e "install.packages('dplyr', repos = 'http://cran.us.r-project.org')" \
- && R -e "install.packages('lme4', repos = 'http://cran.us.r-project.org')" \
- && R -e "install.packages('corrgram', repos = 'http://cran.us.r-project.org')" \
- && R -e "install.packages('reshape', repos = 'http://cran.us.r-project.org')" \
- && R -e "install.packages(c('devtools','mplot', 'googleVis'), repos = 'http://cran.us.r-project.org'); require(devtools); install_github('ramnathv/rCharts')"
+ && R -e "install.packages('devtools')" \
+ && R -e "install.packages('knitr')" \
+ && R -e "install.packages('ggplot2')" \
+ && R -e "install.packages('dplyr')" \
+ && R -e "install.packages('lme4')" \
+ && R -e "install.packages('corrgram')" \
+ && R -e "install.packages('reshape')" \
+ && R -e "install.packages(c('devtools','mplot', 'googleVis')); require(devtools); install_github('ramnathv/rCharts')"
 
 
 # Zeppelin

@@ -63,7 +63,7 @@ RUN set -ex \
  && tar xvf /usr/src/zeppelin/zeppelin-distribution/target/zeppelin*.tar.gz -C /usr/ \
  && mv /usr/zeppelin* $ZEPPELIN_HOME \
  && mkdir -p $ZEPPELIN_HOME/logs \
- && mkdir -p $ZEPPELIN_HOME/run \yml
+ && mkdir -p $ZEPPELIN_HOME/run \
  && apt-get purge -y --auto-remove $buildDeps \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /usr/src/zeppelin \

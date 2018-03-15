@@ -43,7 +43,7 @@ ENV ZEPPELIN_PORT 8080
 ENV ZEPPELIN_HOME /usr/zeppelin
 ENV ZEPPELIN_CONF_DIR $ZEPPELIN_HOME/conf
 ENV ZEPPELIN_NOTEBOOK_DIR $ZEPPELIN_HOME/notebook
-ENV ZEPPELIN_COMMIT v0.7.3
+ENV ZEPPELIN_COMMIT branch-0.8
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
 RUN set -ex \
  && buildDeps=' \
@@ -64,7 +64,7 @@ RUN set -ex \
  && tar xvf /usr/src/zeppelin/zeppelin-distribution/target/zeppelin*.tar.gz -C /usr/ \
  && mv /usr/zeppelin* $ZEPPELIN_HOME \
  && mkdir -p $ZEPPELIN_HOME/logs \
- && mkdir -p $ZEPPELIN_HOME/run \
+ && mkdir -p $ZEPPELIN_HOME/run \yml
  && apt-get purge -y --auto-remove $buildDeps \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /usr/src/zeppelin \

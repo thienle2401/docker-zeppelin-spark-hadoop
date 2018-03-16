@@ -58,7 +58,7 @@ RUN set -ex \
  && git clone https://github.com/apache/zeppelin.git /usr/src/zeppelin \
  && cd /usr/src/zeppelin \
  && dev/change_scala_version.sh "2.11" \
- && MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=1024m" /tmp/apache-maven-3.5.0/bin/mvn --batch-mode package -DskipTests -Psparkr -Pr -Pscala-2.11 -Pbuild-distr \
+ && MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=1024m" /tmp/apache-maven-3.5.0/bin/mvn clean package -Pspark-2.1 -Phadoop-2.4 -Pyarn -Ppyspark -Psparkr -Pscala-2.11 -DskipTests \
  && tar xvf /usr/src/zeppelin/zeppelin-distribution/target/zeppelin*.tar.gz -C /usr/ \
  && mv /usr/zeppelin* $ZEPPELIN_HOME \
  && mkdir -p $ZEPPELIN_HOME/logs \

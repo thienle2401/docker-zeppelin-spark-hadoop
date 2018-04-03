@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ENV Z_VERSION="branch-0.8"
+ENV Z_VERSION="branch-0.8-root"
 ENV LOG_TAG="[ZEPPELIN_${Z_VERSION}]:" \
     Z_HOME="/usr/zeppelin" \
     Z_SOURCE="/usr/src/zeppelin" \

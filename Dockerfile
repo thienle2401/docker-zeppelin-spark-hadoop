@@ -90,7 +90,7 @@ RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | tee -a /etc/ap
 
 # install Apache Zeppelin from source #
 #######################################
-ENV Z_VERSION="branch-0.8-root" \
+ENV Z_VERSION="v0.7.3" \
     Z_HOME="/usr/zeppelin" \
     Z_SOURCE="/usr/src/zeppelin"
 
@@ -98,6 +98,8 @@ ENV ZEPPELIN_CONF_DIR=$Z_HOME/conf \
     ZEPPELIN_NOTEBOOK_DIR=$Z_HOME/notebook
 
 WORKDIR $Z_SOURCE
+
+RUN echo '{ "allow_root": true }' > /root/.bowerrc
 
 RUN git clone --branch $Z_VERSION https://github.com/thienle2401/zeppelin.git $Z_SOURCE
 
